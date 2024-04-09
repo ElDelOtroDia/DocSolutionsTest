@@ -30,10 +30,6 @@ export default function FormResults({ token }) {
           );
           const data = await res.json();
 
-          if (!data.Body.length) {
-            setFormResults([]);
-            return;
-          }
           setFormResults(data.Body);
 
           console.log(data);
@@ -89,16 +85,18 @@ export default function FormResults({ token }) {
                 <th>PhoneNumber</th>
               </tr>
 
-              {formResults.map((user) => (
-                <tr key={user.Id}>
-                  <td>{user.Username}</td>
-                  <td>{user.Name}</td>
-                  <td>{user.FatherLastName}</td>
-                  <td>{user.CreationDate}</td>
-                  <td>{user.Email}</td>
-                  <td>{user.PhoneNumber}</td>
-                </tr>
-              ))}
+             {formResults?.length === 0
+                ? "No hay resultados"
+                : formResults?.map((user) => (
+                    <tr key={user.Id}>
+                      <td>{user.Username}</td>
+                      <td>{user.Name}</td>
+                      <td>{user.FatherLastName}</td>
+                      <td>{user.CreationDate}</td>
+                      <td>{user.Email}</td>
+                      <td>{user.PhoneNumber}</td>
+                    </tr>
+                  ))}
             </table>
           </div>
         </section>
