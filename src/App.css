@@ -1,0 +1,86 @@
+.login,
+.new-user {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.login h1 {
+  margin-top: 0;
+}
+
+.input-container {
+  width: 300px;
+}
+
+.input-login,
+.input-new-user {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.btn-ok {
+  width: 70px;
+}
+
+.btn-ok:hover,
+.btn-new-user:hover {
+  cursor: pointer;
+}
+
+.no-results {
+    text-align: center;
+}
+
+.form-results {
+  max-width: 80%;
+  margin: auto;
+}
+
+.top-table {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+}
+
+.input-form-results {
+  margin-right: 10px;
+}
+
+.btn-new-user {
+  width: 100px;
+}
+
+.table-results-header {
+  background-color: orange;
+  color: white;
+  padding: 2px 5px;
+}
+
+.table-results {
+  padding-top: 20px;
+  width: 100%;
+}
+
+.table-results-rows:nth-child(even) {
+  background-color: whitesmoke;
+}
+
+.table-results-cell {
+  padding-left: 3px;
+  padding-right: 3px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 150px;
+}
+
+.new-user {
+    padding-bottom: 40px;
+}
+
+.btn-new-user {
+    margin-right: 10px;
+}

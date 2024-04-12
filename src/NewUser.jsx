@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./App.css";
 
 const defaultValues = {
   Tenant: null,
@@ -37,7 +38,7 @@ export default function NewUser({ handleNewUser, token }) {
       alert("Confirme su contraseña");
       return;
     }
-    // Should save and send the new user info
+
     async function submitUser() {
       console.log(token);
       try {
@@ -75,78 +76,88 @@ export default function NewUser({ handleNewUser, token }) {
   }
 
   return (
-    <div>
+    <div className="new-user">
       <h1>Nuevo usuario</h1>
-      <div>
+      <div className="input-container">
         <label>Nombre</label>
         <input
+          className="input-new-user"
           type="text"
           value={newUserData.Name}
           onChange={(e) => handleInput("Name", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Apellido P.</label>
         <input
+          className="input-new-user"
           type="text"
           value={newUserData.FatherLastName}
           onChange={(e) => handleInput("FatherLastName", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Apellido M</label>
         <input
+          className="input-new-user"
           type="text"
           value={newUserData.MotherLastName}
           onChange={(e) => handleInput("MotherLastName", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Email</label>
         <input
+          className="input-new-user"
           type="text"
           value={newUserData.Email}
           onChange={(e) => handleInput("Email", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Telefono</label>
         <input
+          className="input-new-user"
           type="number"
           value={newUserData.PhoneNumber}
           onChange={(e) => handleInput("PhoneNumber", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Usuario</label>
         <input
+          className="input-new-user"
           type="text"
           value={newUserData.UserName}
           onChange={(e) => handleInput("UserName", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Password</label>
         <input
+          className="input-new-user"
           type="password"
           value={newUserData.Password}
           onChange={(e) => handleInput("Password", e.target.value)}
         />
       </div>
-      <div>
+      <div className="input-container">
         <label>Confirm Password</label>
         <input
+          className="input-new-user"
           type="password"
           value={confirmPassword}
           onChange={(e) => handleConfirmPassword(e.target.value)}
         />
       </div>
-      <button type="button" onClick={(e) => handleSaveUser(e)}>
-        Guardar
-      </button>
-      <button type="button" onClick={handleNewUser}>
-        Cancelar
-      </button>
+      <div>
+        <button className="btn-new-user" type="button" onClick={(e) => handleSaveUser(e)}>
+          Guardar
+        </button>
+        <button className="btn-new-user" type="button" onClick={handleNewUser}>
+          Cancelar
+        </button>
+      </div>
     </div>
   );
 }

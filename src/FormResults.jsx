@@ -9,7 +9,6 @@ export default function FormResults({ token }) {
   useEffect(
     function () {
       async function getFormResults() {
-        console.log(token);
         try {
           const requestOptions = {
             method: "POST",
@@ -30,9 +29,7 @@ export default function FormResults({ token }) {
           );
           const data = await res.json();
 
-          setFormResults(data.Body);
-
-          console.log(data);
+          setFormResults(data.Body || []);
         } catch (err) {
           console.log(err);
         }
@@ -48,16 +45,16 @@ export default function FormResults({ token }) {
 
   function handleNewUser(e) {
     e.preventDefault();
-    setSearchText("")
+    setSearchText("");
     setIsNewUser((curr) => !curr);
   }
 
   return (
     <>
       {isNewUser ? (
-        <NewUser handleNewUser={handleNewUser} token={token}/>
+        <NewUser handleNewUser={handleNewUser} token={token} />
       ) : (
-        <section>
+        <section className="form-results">
           <div className="top-table">
             <div>
               <input
@@ -65,39 +62,47 @@ export default function FormResults({ token }) {
                 placeholder="Buscar"
                 value={searchText}
                 onChange={(e) => handleSearchText(e.target.value)}
+                className="input-form-results"
               />
-              <button type="button">OK</button>
             </div>
             <div>
-              <button type="button" onClick={(e) => handleNewUser(e)}>
+              <button
+                type="button"
+                className="btn-new-user"
+                onClick={(e) => handleNewUser(e)}
+              >
                 Nuevo
               </button>
             </div>
           </div>
           <div>
-            <table>
-              <tr>
-                <th>Username</th>
-                <th>Name</th>
-                <th>FatherLastName</th>
-                <th>CreationDate</th>
-                <th>Email</th>
-                <th>PhoneNumber</th>
-              </tr>
+            {formResults.length === 0 ? (
+              <p className="no-results">No hay resultados. Escriba para iniciar una búsqueda.</p>
+            ) : (
+              <table className="table-results">
+                <tr>
+                  <th className="table-results-header">Username</th>
+                  <th className="table-results-header">Name</th>
+                  <th className="table-results-header">FatherLastName</th>
+                  <th className="table-results-header">CreationDate</th>
+                  <th className="table-results-header">Email</th>
+                  <th className="table-results-header">PhoneNumber</th>
+                </tr>
 
-             {formResults?.length === 0
-                ? "No hay resultados"
-                : formResults?.map((user) => (
-                    <tr key={user.Id}>
-                      <td>{user.Username}</td>
-                      <td>{user.Name}</td>
-                      <td>{user.FatherLastName}</td>
-                      <td>{user.CreationDate}</td>
-                      <td>{user.Email}</td>
-                      <td>{user.PhoneNumber}</td>
-                    </tr>
-                  ))}
-            </table>
+                {formResults?.map((user) => (
+                  <tr key={user.Id} className="table-results-rows">
+                    <td className="table-results-cell">{user.Username}</td>
+                    <td className="table-results-cell">{user.Name}</td>
+                    <td className="table-results-cell">
+                      {user.FatherLastName}
+                    </td>
+                    <td className="table-results-cell">{user.CreationDate}</td>
+                    <td className="table-results-cell">{user.Email}</td>
+                    <td className="table-results-cell">{user.PhoneNumber}</td>
+                  </tr>
+                ))}
+              </table>
+            )}
           </div>
         </section>
       )}

@@ -5,6 +5,7 @@
 import { useState } from "react";
 import Login from "./Login";
 import FormResults from "./FormResults";
+import "./App.css";
 
 function App() {
   const [token, setToken] = useState(null);
@@ -36,8 +37,11 @@ function App() {
       );
       const data = await res.json();
 
-      if (data.IsOK === true) setToken(data.Body.Token);
-      console.log(data.IsOK);
+      if (data.IsOK !== true)
+        return alert(
+          "Sus datos son incorrectos, verifique su información e intente nuevamente"
+        );
+      setToken(data.Body.Token);
     } catch (err) {
       console.log(err);
     }
